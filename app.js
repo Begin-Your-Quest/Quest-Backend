@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(getUserFromToken);
 
-app.get("/", (req, res) => res.send("Hello, World!"));
+app.get("/", (req, res) => res.send("Begin Your Quest!"));
 
 app.use("/users", usersRouter);
 
