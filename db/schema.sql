@@ -35,8 +35,8 @@ CREATE TABLE characters_skills (
 
 CREATE TABLE sessions (
   id serial PRIMARY KEY,
-  dm_id integer unique NOT NULL REFERENCES users(id) on delete cascade,
-  name text NOT NULL,
+  dm_id integer NOT NULL REFERENCES users(id) on delete cascade,
+  name text UNIQUE NOT NULL,
   date date NOT NULL
 );
 

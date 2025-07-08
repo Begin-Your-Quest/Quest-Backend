@@ -1,5 +1,6 @@
 import db from "#db/client";
 import { createUser } from "#db/queries/users";
+import { createSession } from "#db/queries/sessions";
 
 await db.connect();
 await seed();
@@ -7,5 +8,19 @@ await db.end();
 console.log("🌱 Database seeded.");
 
 async function seed() {
-  await createUser("foo", "bar");
+  const userOne = await createUser("username", "password");
+  for (let i = 1; i <= 5; i++) {
+    const session = await createSession(
+      userOne.id, 
+      `Session Number ${i}`, 
+      `2025-07-0${i}`);
+  }
+
+  const userTwo = await createUser("username1", "password1");
+  for (let i = 1; i <= 5; i++) {
+    const session = await createSession(
+      userTwo.id, 
+      `Session Number ${i}`, 
+      `2025-07-0${i}`);
+  }
 }
