@@ -2,7 +2,8 @@ import db from "#db/client";
 
 export const createCharacter = async (name,clas,attack,health,userId) => {
   const sql = `insert into characters (name,class,attack_stat,health_stat,user_id)
-  values ($1,$2,$3,$4,$5)`;
+  values ($1,$2,$3,$4,$5)
+  returning *`;
   const {rows: [character]} = await db.query(sql, [name,clas,attack,health,userId]);
   return character;
 };
