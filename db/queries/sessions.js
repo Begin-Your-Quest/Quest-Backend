@@ -12,11 +12,9 @@ export const createSession = async (dmId, name, date) => {
 
 export const getSessionsByUserId = async (id) => {
   const sql = `
-    SELECT sessions.* FROM sessions 
-    JOIN users ON users.id = sessions.dm_id 
+    SELECT sessions.* FROM sessions
     WHERE dm_id = $1;
   `;
-  console.log(id)
   const { rows: sessions } = await db.query(sql, [id]);
   return sessions;
 }
