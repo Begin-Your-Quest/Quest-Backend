@@ -14,13 +14,13 @@ const {
 
 export async function getSkillByMagicPoints(magicPoints) {
   const SQL = `SELECT * FROM skills WHERE magic_points =$2`
-  const { rows: [skills] } = await db.query(SQL, [magicPoints]);
+  const { rows: skills } = await db.query(SQL, [magicPoints]);
   return skills
 }
 
 export async function getSkillByDamage(damage) {
   const SQL = `SELECT * FROM skills WHERE damge = $3`;
-  const { rows: [skills] } = await db.query(SQL, [damage]);
+  const { rows: skills } = await db.query(SQL, [damage]);
   return skills;
 }
 
