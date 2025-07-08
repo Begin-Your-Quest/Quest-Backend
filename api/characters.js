@@ -21,14 +21,14 @@ router.get("/:id", async (req,res) => {
   res.status(200).send(character);
 })
 
-router.post("/", requireBody([""]), async (req,res) => {
+router.post("/", requireBody(["name","clas","attack","health","userId"]), async (req,res) => {
   const {name,clas,attack,health,userId} = req.body;
   const character = await createrCharacter(name,clas,attack,health,userId);
   if(!character) res.status(400).send("One or more fields invalid!");
   res.status(200).send(character);
 })
 
-router.put("/", requireBody([""]), async (req,res) => {
+router.put("/", requireBody(["name","clas","attack","health","userId"]), async (req,res) => {
   const {name,clas,attack,health,userId} = req.body;
   const character = await createrCharacter(name,clas,attack,health,userId);
   if(!character) res.status(400).send("One or more fields invalid!");
