@@ -16,6 +16,6 @@ export const getAllCharactersByUserId = async (userId) => {
 
 export const getCharacterByCharacterId = async (characterId) => {
   const sql = `select * from characters where id=$1`;
-  const {rows: character} = await db.query(sql, [characterId]);
+  const {rows: [character]} = await db.query(sql, [characterId]);
   return character;
 };
