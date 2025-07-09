@@ -3,7 +3,7 @@ const router = express.Router();
 export default router;
 
 import requireUser from "../middleware/requireUser.js";
-import { getAllCharactersByUserId, getCharacterByCharacterId } from "#db/queries/characters";
+import { getAllCharactersByUserId, getCharacterByCharacterId, createCharacter, updateCharacter} from "#db/queries/characters";
 import requireBody from "#middleware/requireBody";
 
 router.use(requireUser);
@@ -23,14 +23,14 @@ router.get("/:id", async (req,res) => {
 
 router.post("/", requireBody(["name","clas","attack","health","userId"]), async (req,res) => {
   const {name,clas,attack,health,userId} = req.body;
-  const character = await createrCharacter(name,clas,attack,health,userId);
+  const character = await createCharacter(name,clas,attack,health,userId);
   if(!character) res.status(400).send("One or more fields invalid!");
   res.status(200).send(character);
 })
 
 router.put("/", requireBody(["name","clas","attack","health","userId"]), async (req,res) => {
   const {name,clas,attack,health,userId} = req.body;
-  const character = await createrCharacter(name,clas,attack,health,userId);
+  const character = await updateCharacter(name,clas,attack,health,userId);
   if(!character) res.status(400).send("One or more fields invalid!");
   res.status(200).send(character);
 })
