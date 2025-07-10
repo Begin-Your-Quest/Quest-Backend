@@ -9,8 +9,8 @@ import requireBody from "#middleware/requireBody";
 router.use(requireUser);
 
 router.get("/", async (req,res) => {
-  const characters = getAllCharactersByUserId(req.user.id);
-  res.status(200).send(characters);
+  const characters = await getAllCharactersByUserId(req.user.id);
+  res.status(200).send({data: characters});
 })
 
 router.get("/:id", async (req,res) => {
