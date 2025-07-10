@@ -13,15 +13,17 @@ router
 })
 
 router
-.post(requireBody(["name", "magic_points", "damage"]), async(req, res) => {
-  const { name, magicPoints, damage } = req.body;
-  const skill = await createSkill(name, getSkillByMagicPoints, damage);
+.post(requireBody(["name", "magic_points", "damage", "description"]), async(req, res) => {
+  const { name, magicPoints, damage, description } = req.body;
+  const skill = await createSkill(name, magicPoints, damage, description);
   res.status(201).send(skill)
 })
 
 router
-.route("/id").put(requireBody(["name", "magic_points", "damage"]), async(req, res) => {
-  const { name, magicPoints, damage } = req.body;
-  const skill = await updateSkillById(name, magicPoints, damage);
+.route("/id").put(requireBody(["name", "magic_points", "damage", "description"]), async(req, res) => {
+  const { name, magicPoints, damage, description } = req.body;
+  const skill = await updateSkillById(name, magicPoints, damage, description);
   res.status(201).send(skill)
 })
+
+
