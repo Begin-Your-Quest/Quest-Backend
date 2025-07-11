@@ -25,9 +25,3 @@ export async function updateSkillById(id, name, magicPoints, damage, description
 return skill;
 }
 
-// export async function decrementSkillByUse(name, magicPoints) {
-  
-//   magic counter
-
-
-// }
