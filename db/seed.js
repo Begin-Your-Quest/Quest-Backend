@@ -2,8 +2,8 @@ import db from "#db/client";
 import { createUser } from "#db/queries/users";
 import { createSession } from "#db/queries/sessions";
 import { createCharacter } from "./queries/characters.js";
-import { createSkill } from "./queries/skills.js";
-import { faker } from "@faker-js/faker";
+
+
 await db.connect();
 await seed();
 await db.end();
@@ -28,11 +28,4 @@ async function seed() {
     const character = await createCharacter(`char${i}`,"mage",7,4,userTwo.id);
   }
 
-  for (let i = 1; i <= 15; i++) {
-    const skill = await createSkill(
-      `SKILL ${i}`,
-      Math.floor(Math.random() * 501),
-      Math.floor(Math.random() * 51)
-    )
-  }
 }
