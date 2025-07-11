@@ -1,10 +1,9 @@
 import express from "express";
-import requireUser from "#middleware/requireUser";
-
-import { getSkillsByUserId } from "#db/queries/skills.js";
+import requireUser from "#middleware/requireUser.js";
+import { getSkillsByCharacterId }  from "#db/queries/skills.js";
 
 const router = express.Router();
-export default router;
+
 
 router
 .route("/")
@@ -29,4 +28,5 @@ router
   res.send(req.characterSkills)
 });
 
+export default router;
 
