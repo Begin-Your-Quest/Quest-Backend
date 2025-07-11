@@ -2,13 +2,9 @@ import db from "#db/client";
 import { createUser } from "#db/queries/users";
 import { createSession } from "#db/queries/sessions";
 import { createCharacter } from "./queries/characters.js";
-<<<<<<< HEAD
+
 import { createSkill } from "#db/queries/skills"
 
-=======
-import { createSkill } from "./queries/skills.js";
-import { faker } from "@faker-js/faker";
->>>>>>> ec3fbce46c08ebebafe33333861f785b32f4eb5a
 await db.connect();
 await seed();
 await db.end();
@@ -33,7 +29,7 @@ async function seed() {
     const character = await createCharacter(`char${i}`,"mage",7,4,userTwo.id);
   }
 
-<<<<<<< HEAD
+
   const crossSlash = await createSkill("Cross Slash", 2, 5, "A tried-&-true hack-&-slash technique.");
   const pommelStrike = await createSkill("Pommel Strike", 1, 1, "")
   const fireBlast = await createSkill("Fire Blast", 2, 6, "unleashes an massive explosion.")
@@ -46,14 +42,7 @@ async function seed() {
   const condemn = await createSkill("Condemn", 2, 6, "Call down divine wrath to smite enemies.")
 
 
-=======
-  for (let i = 1; i <= 15; i++) {
-    const skill = await createSkill(
-      `SKILL ${i}`,
-      Math.floor(Math.random() * 501),
-      Math.floor(Math.random() * 51)
-    )
-  }
->>>>>>> ec3fbce46c08ebebafe33333861f785b32f4eb5a
+
+
 }
 
