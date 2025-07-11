@@ -2,7 +2,6 @@ import db from "#db/client";
 import { createUser } from "#db/queries/users";
 import { createSession } from "#db/queries/sessions";
 import { createCharacter } from "./queries/characters.js";
-
 import { createSkill } from "#db/queries/skills"
 
 await db.connect();
@@ -31,7 +30,7 @@ async function seed() {
 
 
   const crossSlash = await createSkill("Cross Slash", 2, 5, "A tried-&-true hack-&-slash technique.");
-  const pommelStrike = await createSkill("Pommel Strike", 1, 1, "")
+  const pommelStrike = await createSkill("Pommel Strike", 1, 1, "Quick attack")
   const fireBlast = await createSkill("Fire Blast", 2, 6, "unleashes an massive explosion.")
   const icicle = await createSkill("Icicle Shot", 1, 3, "A concentrated burst of piercing cold.")
   const carefulAim = await createSkill("Careful Aim", 2, 5, "Pause momentarily to deliver an expert headshot.")
