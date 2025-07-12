@@ -25,7 +25,8 @@ CREATE TABLE skills (
   id serial PRIMARY KEY,
   name text NOT NULL UNIQUE,
   magic_points integer NOT NULL,
-  damage integer NOT NULL
+  damage integer NOT NULL,
+  description text NOT NULL
 );
 
 CREATE TABLE characters_skills (
