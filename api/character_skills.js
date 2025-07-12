@@ -8,13 +8,13 @@ const router = express.Router();
 router
 .route("/")
 .get(async (req, res) => {
-  const skills = await getCharracterSkillsByUserId(req.skill.userId);
+  const skills = await getCharracterSkillsById(req.skill.userId);
   res.send(skills)
 })
 
 router
 .param("/:id", async(req, res, next, id) => {
-  const order = await getCharracterSkillsByUserId(id);
+  const order = await getCharracterSkillsById(id);
   if(!characterSkills) return res.status(404).send("character skills not found")
     req.characterSkills = characterSkills;
   next()
