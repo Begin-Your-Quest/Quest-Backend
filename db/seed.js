@@ -3,7 +3,7 @@ import { createUser } from "#db/queries/users";
 import { createSession } from "#db/queries/sessions";
 import { createCharacter } from "./queries/characters.js";
 import { createSkill } from "./queries/skills.js";
-import { faker } from "@faker-js/faker";
+import { linkSessionsToCharacters } from "./queries/sessions_characters.js";
 await db.connect();
 await seed();
 await db.end();
@@ -27,7 +27,7 @@ async function seed() {
       `2025-07-0${i}`);
     const character = await createCharacter(`char${i}`,"mage",7,4,userTwo.id);
   }
-
+  
   for (let i = 1; i <= 15; i++) {
     const skill = await createSkill(
       `SKILL ${i}`,
@@ -35,4 +35,12 @@ async function seed() {
       Math.floor(Math.random() * 51)
     )
   }
+  
+  for (let i = 1; i <= 5; i++) {
+    const record = await linkSessionsToCharacters(1, i);
+  }
+  for (let i = 6; i <= 10; i++) {
+    const record = await linkSessionsToCharacters(2, i);
+  }
+  
 }

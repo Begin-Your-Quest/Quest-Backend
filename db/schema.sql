@@ -43,7 +43,7 @@ CREATE TABLE sessions (
 
 CREATE TABLE sessions_characters (
   id serial PRIMARY KEY,
-  session_id integer unique NOT NULL REFERENCES sessions(id) on delete cascade, 
-  character_id integer unique NOT NULL REFERENCES characters(id) on delete cascade 
+  session_id integer NOT NULL REFERENCES sessions(id) on delete cascade, 
+  character_id integer NOT NULL REFERENCES characters(id) on delete cascade 
 );
 
