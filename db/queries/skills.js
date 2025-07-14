@@ -1,4 +1,4 @@
-import db from "db/client"
+import db from "#db/client"
 
 export async function createSkill(name, magicPoints, damage, description) {
   const SQL = `
@@ -8,8 +8,9 @@ export async function createSkill(name, magicPoints, damage, description) {
   `;
 
 const {
-  rows: [skills],
-  } = db.query(SQL, [name, magicPoints, damage, description]);
+  rows: [skill]
+  } = await db.query(SQL, [name, magicPoints, damage, description]);
+  return skill
 }
 
 export async function getSkillsById(id) {
