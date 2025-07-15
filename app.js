@@ -9,6 +9,7 @@ import cors from "cors";
 import morgan from "morgan";
 import sessionsRouter from "#api/sessions";
 import charactersRouter from "#api/characters";
+import skillsRouter from "#api/skills";
 
 app.use(cors({ origin: process.env.CORS_ORIGIN ?? /localhost/ }));
 
@@ -24,6 +25,7 @@ app.get("/", (req, res) => res.send("Begin Your Quest!"));
 app.use("/users", usersRouter);
 app.use(`/sessions`, sessionsRouter)
 app.use("/characters", charactersRouter);
+app.use("/api/skills", skillsRouter);
 
 app.use(handlePostgresErrors);
 app.use((err, req, res, next) => {

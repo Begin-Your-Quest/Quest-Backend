@@ -1,17 +1,17 @@
 import express from "express";
 import { 
-  getAllSkills, 
+  getSkills, 
   getSkillById, 
   createSkill, 
-  updateSkill, 
-} from "#db/queries/skills.js";
-import requireBody from "#middleware/requireBody.js";
+  updateSkillById as updateSkill,
+} from "#db/queries/skills";
+import requireBody from "#middleware/requireBody";
 
 const router = express.Router();
 
 router
 .get("/", async (req, res, next) => {
-    const skills = await getAllSkills(); 
+    const skills = await getSkills(); 
     res.status(200).json(skills);  
   })
 
