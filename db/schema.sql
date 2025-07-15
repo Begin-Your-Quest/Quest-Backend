@@ -17,6 +17,7 @@ CREATE TABLE characters (
   class text NOT NULL,
   attack_stat integer NOT NULL,
   health_stat integer NOT NULL,
+  description text not null,
   user_id integer NOT NULL REFERENCES users(id) on delete cascade,
   UNIQUE(name,class,attack_stat,health_stat,user_id)
 );

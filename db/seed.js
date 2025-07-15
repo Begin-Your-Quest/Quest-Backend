@@ -15,7 +15,7 @@ async function seed() {
       userOne.id, 
       `Session Number ${i}`, 
       `2025-07-0${i}`);
-      const character = await createCharacter(`char${i}`,"mage",7,4,userOne.id);
+      const character = await createCharacter(`char${i}`,"mage",7,4,"Strong strong strong",userOne.id);
   }
 
   const userTwo = await createUser("username1", "password1");
@@ -24,6 +24,6 @@ async function seed() {
       userTwo.id, 
       `Session Number ${i}`, 
       `2025-07-0${i}`);
-    const character = await createCharacter(`char${i}`,"mage",7,4,userTwo.id);
+    const character = await createCharacter(`char${i}`,"mage",7,4,"Strong strong strong",userTwo.id);
   }
 }
