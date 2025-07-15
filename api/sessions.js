@@ -5,6 +5,7 @@ export default sessionsRouter;
 import requireUser from '#middleware/requireUser';
 import { getSessionsByUserId, getSessionById, createSession, updateSessionById } from '#db/queries/sessions';
 import requireBody from '#middleware/requireBody';
+import { getCharactersBySessionId } from '#db/queries/sessions_characters';
 
 sessionsRouter.use(requireUser);
 
@@ -21,6 +22,13 @@ sessionsRouter.get(`/:id`, async (request, response) => {
   if(session.dm_id !== request.user.id) return response.status(404).send(`THE SESSION DOES NOT EXIST.`);
   response.send(session)
 });
+
+sessionsRouter.get(`/:id/characters`, async (request, response) => {
+  const { id } = request.params;
+  const characters = await getCharactersBySessionId(id);
+  if(!characters) return response.send(`NO CHARACTERS ADDED`);
+  response.send(characters)
+})
 
 sessionsRouter.post(`/`,
   requireBody(["dmId", "name", "date"]),
