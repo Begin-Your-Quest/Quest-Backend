@@ -4,55 +4,45 @@ import {
   getSkillById, 
   createSkill, 
   updateSkill, 
-  deleteSkill 
 } from "#db/queries/skills.js";
 import requireBody from "#middleware/requireBody.js";
 
 const router = express.Router();
 
-
-router.get("/", async (req, res, next) => {
-  try {
-    const skills = await getAllSkills();
-    res.json(skills);
-  } catch (err) { next(err); }
-});
-
-
-router.get("/:id", async (req, res, next) => {
-  try {
-    const skill = await getSkillById(req.params.id);
-    res.json(skill);
-  } catch (err) { next(err); }
-});
-
-
-router.post(
-  "/", 
+router
+.get("/", async (req, res, next) => {
+  const skills = await getAllSkills(req.skill.id);
+  res.status(200).send({data: skills});
+})
+router
+.post( "/", 
   requireBody("name", "magic_points", "damage"),
   async (req, res, next) => {
-    try {
-      const newSkill = await createSkill(req.body);
-      res.status(201).json(newSkill);
-    } catch (err) { next(err); }
-  }
-);
-
-
-router.patch("/:id", async (req, res, next) => {
-  try {
-    const updated = await updateSkill(req.params.id, req.body);
-    res.json(updated);
-  } catch (err) { next(err); }
+  const {name, magicPoints, damage, description} = req.body;
+  const skill = await createSkill(name, magicPoints, damage, description);
+  if(!skill) res.status(400).send("improper entry, please try again...");
+  res.status(200).send(skill);
 });
 
 
-router.delete("/:id", async (req, res, next) => {
-  try {
-    await deleteSkill(req.params.id);
-    res.sendStatus(204);
-  } catch (err) { next(err); }
-});
+router
+.get("/:id", async (req, res) => {
+  const {id} = req.params;
+  const skill = await getSkillById(id);
+  if(!skill) res.status(400).send("No skill found...");
+  if(skill.skill_id !== req.skill.id) res.status(400).send("No skill found...");
+  res.status(200).send(skill);
+})
+
+
+
+router
+.put("/", requireBody(["name", "magicPoints", "damage", "description"]), async (req, res) =>{
+  const {name, magicPoints, damage, description, skillId} = req.body;
+  const skill = await updateSkill(name, magicPoints, damage, description, skillId)
+  if(!skill) res.status(400).send("improper entry, please try again...");
+  res.status(200).send(skill);
+})
 
 export default router;
 
