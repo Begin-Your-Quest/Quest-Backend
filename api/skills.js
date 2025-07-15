@@ -3,7 +3,7 @@ import {
   getSkills, 
   getSkillById, 
   createSkill, 
-  updateSkillById, 
+  updateSkillById as updateSkill,
 } from "#db/queries/skills";
 import requireBody from "#middleware/requireBody";
 
@@ -11,7 +11,7 @@ const router = express.Router();
 
 router
 .get("/", async (req, res, next) => {
-    const skills = await getAllSkills(); 
+    const skills = await getSkills(); 
     res.status(200).json(skills);  
   })
 
