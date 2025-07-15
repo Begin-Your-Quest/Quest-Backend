@@ -1,19 +1,21 @@
 import express from "express";
 import { 
-  getAllSkills, 
+  getSkills, 
   getSkillById, 
   createSkill, 
-  updateSkill, 
-} from "#db/queries/skills.js";
-import requireBody from "#middleware/requireBody.js";
+  updateSkillById, 
+} from "#db/queries/skills";
+import requireBody from "#middleware/requireBody";
 
 const router = express.Router();
 
 router
-.get("/", async (req, res, next) => {
-  const skills = await getAllSkills(req.skill.id);
+.get("/", async (req, res, next) => { 
+  console.log("inside this function")
+  const skills = await getSkills();
   res.status(200).send({data: skills});
 })
+
 router
 .post( "/", 
   requireBody("name", "magic_points", "damage"),
@@ -39,7 +41,7 @@ router
 router
 .put("/", requireBody(["name", "magicPoints", "damage", "description"]), async (req, res) =>{
   const {name, magicPoints, damage, description, skillId} = req.body;
-  const skill = await updateSkill(name, magicPoints, damage, description, skillId)
+  const skill = await updateSkillById(name, magicPoints, damage, description, skillId)
   if(!skill) res.status(400).send("improper entry, please try again...");
   res.status(200).send(skill);
 })
