@@ -37,3 +37,10 @@ export async function updateSkillById(id, name, magicPoints, damage, description
 return skill;
 }
 
+export async function deleteSkill(id) {
+  const SQL = `
+  DELETE * WHERE id=$1`
+  const {rows: skill } = await db.query(SQL, [id])
+  return skill;
+}
+
