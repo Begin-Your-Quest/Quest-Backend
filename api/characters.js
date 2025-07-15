@@ -10,7 +10,7 @@ router.use(requireUser);
 
 router.get("/", async (req,res) => {
   const characters = await getAllCharactersByUserId(req.user.id);
-  res.status(200).send({data: characters});
+  res.status(200).send(characters);
 })
 
 router.get("/:id", async (req,res) => {
@@ -21,16 +21,17 @@ router.get("/:id", async (req,res) => {
   res.status(200).send(character);
 })
 
-router.post("/", requireBody(["name","clas","attack","health","userId"]), async (req,res) => {
-  const {name,clas,attack,health,userId} = req.body;
-  const character = await createCharacter(name,clas,attack,health,userId);
+router.post("/", requireBody(["name","clas","attack","health","description"]), async (req,res) => {
+  const {name,clas,attack,health,description} = req.body;
+  const userId = req.user.id;
+  const character = await createCharacter(name,clas,attack,health,description,userId);
   if(!character) res.status(400).send("One or more fields invalid!");
   res.status(200).send(character);
 })
 
-router.put("/", requireBody(["name","clas","attack","health","userId"]), async (req,res) => {
-  const {name,clas,attack,health,userId} = req.body;
-  const character = await updateCharacter(name,clas,attack,health,userId);
+router.put("/", requireBody(["name","clas","attack","health","description","userId","id"]), async (req,res) => {
+  const {name,clas,attack,health,description,userId,id} = req.body;
+  const character = await updateCharacter(name,clas,attack,health,description,userId,id);
   if(!character) res.status(400).send("One or more fields invalid!");
   res.status(200).send(character);
 })

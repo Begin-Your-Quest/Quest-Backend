@@ -10,11 +10,10 @@ import requireBody from "#middleware/requireBody";
 const router = express.Router();
 
 router
-.get("/", async (req, res, next) => { 
-  console.log("inside this function")
-  const skills = await getSkills();
-  res.status(200).send({data: skills});
-})
+.get("/", async (req, res, next) => {
+    const skills = await getAllSkills(); 
+    res.status(200).json(skills);  
+  })
 
 router
 .post( "/", 
@@ -28,13 +27,11 @@ router
 
 
 router
-.get("/:id", async (req, res) => {
-  const {id} = req.params;
-  const skill = await getSkillById(id);
-  if(!skill) res.status(400).send("No skill found...");
-  if(skill.skill_id !== req.skill.id) res.status(400).send("No skill found...");
-  res.status(200).send(skill);
-})
+.get("/:id", async (req, res, next) => {
+    const skill = await getSkillById(req.params.id);
+    if (!skill) return res.status(404).send("No skill found");
+    res.status(200).json(skill);
+  })
 
 
 
