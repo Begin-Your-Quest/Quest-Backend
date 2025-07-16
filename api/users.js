@@ -24,6 +24,5 @@ router
     if (!user) return res.status(401).send("Invalid username or password.");
 
     const token = await createToken({ id: user.id });
-    console.log(token);
     res.send(token);
   });
