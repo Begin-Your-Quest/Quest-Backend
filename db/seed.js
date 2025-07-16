@@ -29,7 +29,7 @@ async function seed() {
   }
 
   console.log('...sessions created')
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 3; i++) {
     const record = await linkSessionsToCharacters(1, i);
   }
   for (let i = 6; i <= 10; i++) {
