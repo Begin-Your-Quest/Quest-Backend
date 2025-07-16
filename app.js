@@ -25,7 +25,7 @@ app.get("/", (req, res) => res.send("Begin Your Quest!"));
 app.use("/users", usersRouter);
 app.use(`/sessions`, sessionsRouter)
 app.use("/characters", charactersRouter);
-app.use("/api/skills", skillsRouter);
+app.use("/skills", skillsRouter);
 
 app.use(handlePostgresErrors);
 app.use((err, req, res, next) => {
