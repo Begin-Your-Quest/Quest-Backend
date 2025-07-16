@@ -36,7 +36,7 @@ router
 
 
 router
-.put("/", requireBody(["name", "magicPoints", "damage", "description"]), async (req, res) =>{
+.put("/", requireBody(["name", "magic_points", "damage", "description"]), async (req, res) =>{
   const {name, magicPoints, damage, description, skillId} = req.body;
   const skill = await updateSkillById(name, magicPoints, damage, description, skillId)
   if(!skill) res.status(400).send("improper entry, please try again...");
