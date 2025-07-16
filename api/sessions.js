@@ -5,7 +5,7 @@ export default sessionsRouter;
 import requireUser from '#middleware/requireUser';
 import { getSessionsByUserId, getSessionById, createSession, updateSessionById } from '#db/queries/sessions';
 import requireBody from '#middleware/requireBody';
-import { getCharactersBySessionId } from '#db/queries/sessions_characters';
+import { getCharactersBySessionId, linkSessionsToCharacters } from '#db/queries/sessions_characters';
 
 sessionsRouter.use(requireUser);
 
@@ -28,7 +28,17 @@ sessionsRouter.get(`/:id/characters`, async (request, response) => {
   const characters = await getCharactersBySessionId(id);
   if(!characters) return response.send(`NO CHARACTERS ADDED`);
   response.send(characters)
-})
+});
+
+sessionsRouter.post(`/:id/characters`,
+  requireBody(["sessionId", "characterId"]),
+  async (request, response) => {
+    const { id } = request.params;
+    const { sessionId, characterId} = request.body;
+    const sessionRecord = await linkSessionsToCharacters(sessionId, characterId);
+    response.send(sessionRecord)
+  }
+)
 
 sessionsRouter.post(`/`,
   requireBody(["dmId", "name", "date"]),
