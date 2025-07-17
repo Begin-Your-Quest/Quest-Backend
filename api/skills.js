@@ -17,10 +17,10 @@ router
 
 router
 .post( "/", 
-  requireBody("name", "magic_points", "damage"),
+  requireBody("name", "image_url", "magic_points", "damage"),
   async (req, res, next) => {
-  const {name, magicPoints, damage, description} = req.body;
-  const skill = await createSkill(name, magicPoints, damage, description);
+  const {name, image_url, magicPoints, damage, description} = req.body;
+  const skill = await createSkill(name, image_url, magicPoints, damage, description);
   if(!skill) res.status(400).send("improper entry, please try again...");
   res.status(200).send(skill);
 });
@@ -36,9 +36,9 @@ router
 
 
 router
-.put("/", requireBody(["name", "magic_points", "damage", "description"]), async (req, res) =>{
-  const {name, magicPoints, damage, description, skillId} = req.body;
-  const skill = await updateSkillById(name, magicPoints, damage, description, skillId)
+.put("/", requireBody(["name", "image_url", "magic_points", "damage", "description"]), async (req, res) =>{
+  const {name, image_url, magicPoints, damage, description, skillId} = req.body;
+  const skill = await updateSkill(name, image_url, magicPoints, damage, description, skillId)
   if(!skill) res.status(400).send("improper entry, please try again...");
   res.status(200).send(skill);
 })

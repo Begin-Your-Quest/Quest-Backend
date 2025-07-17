@@ -24,6 +24,7 @@ CREATE TABLE characters (
 
 CREATE TABLE skills (
   id serial PRIMARY KEY,
+  image_url varchar NOT NULL,
   name text NOT NULL UNIQUE,
   magic_points integer NOT NULL,
   damage integer NOT NULL,

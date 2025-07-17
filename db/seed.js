@@ -38,16 +38,16 @@ async function seed() {
 
 
 console.log('creating skills...')
-  const crossSlash = await createSkill("Cross Slash", 2, 5, "A tried-and-true hack-and-slash technique.");
-  const pommelStrike = await createSkill("Pommel Strike", 1, 1, "Quick attack")
-  const fireBlast = await createSkill("Fire Blast", 2, 6, "unleashes an massive explosion.")
-  const icicle = await createSkill("Icicle Shot", 1, 3, "A concentrated burst of piercing cold.")
-  const carefulAim = await createSkill("Careful Aim", 2, 5, "Pause momentarily to deliver an expert headshot.")
-  const quickShot = await createSkill("Quick Shot", 1, 2, "A rapid fire onslaught.")
-  const backstab = await createSkill("Backstab", 2, 6, "Sidle up and smile. Hits enemies where they hurt.")
-  const throwingKnife = await createSkill("Throwing Knife", 1, 3, "At later levels can be coated with various poisons.")
-  const cure = await createSkill("Cure", 2, 6, "Restores health to self and other users.")
-  const condemn = await createSkill("Condemn", 2, 6, "Call down divine wrath to smite enemies.")
+  const crossSlash = await createSkill("Cross Slash", "/media/cross_slash.png", 2, 5, "A tried-and-true hack-and-slash technique.");
+  const pommelStrike = await createSkill("Pommel Strike", "/media/pommel_strike.png", 1, 1, "Quick attack")
+  const fireBlast = await createSkill("Fire Blast", "/media/fire_blast.png" , 2, 6, "unleashes an massive explosion.")
+  const icicle = await createSkill("Icicle Shot", "media/icicle.png", 1, 3, "A concentrated burst of piercing cold.")
+  const carefulAim = await createSkill("Careful Aim", "media/careful_aim.png", 2, 5, "Pause momentarily to deliver an expert headshot.")
+  const quickShot = await createSkill("Quick Shot", "media/quick_shot.png", 1, 2, "A rapid fire onslaught.")
+  const backstab = await createSkill("Backstab", "media/backstab.png", 2, 6, "Sidle up and smile. Hits enemies where they hurt.")
+  const throwingKnife = await createSkill("Throwing Knife", "media/throwing_knife.png", 1, 3, "At later levels can be coated with various poisons.")
+  const cure = await createSkill("Cure", "media/cure.png", 2, 6, "Restores health to self and other users.")
+  const condemn = await createSkill("Condemn", "media/condemn.png", 2, 6, "Call down divine wrath to smite enemies.")
 console.log('...skills created')
 
 
