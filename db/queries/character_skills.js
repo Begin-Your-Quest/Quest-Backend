@@ -21,4 +21,14 @@ export const getAllCharacterSkills = async() => {
   const { rows: currentCharacterSkills } = await db.query(SQL)
   return currentCharacterSkills
 }
+
+export const linkSkillsToCharacters = async (skillId, characterId) => {
+  const sql = `
+    INSERT INTO character_skills (skill_id, character_id)
+    VALUES ($1, $2)
+    RETURNING *;
+  `;
+  const { rows: [record] } = await db.query(sql, [skillId, characterId]);
+  return record;
+}
   

@@ -28,5 +28,18 @@ router
   res.send(req.characterSkills)
 });
 
+router
+.route
+  post(`/:id/characters`,
+    requireBody(["skillId", "characterId"]),
+    async (request, response) => {
+      const { id } = request.params;
+      const { skillId, characterId} = request.body;
+      const skillRecord = await linkSkillsToCharacters(skillId, characterId);
+      response.send(skillRecord)
+    }
+  )
+
+
 export default router;
 
