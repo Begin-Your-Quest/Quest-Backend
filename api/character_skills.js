@@ -1,6 +1,6 @@
 import express from "express";
-import requireUser from "#middleware/requireUser.js";
-import { getSkillsByCharacterId }  from "#db/queries/skills.js";
+import requireBody from "#middleware/requireBody";
+import { linkSkillsToCharacters} from "#db/queries/character_skills";
 
 const router = express.Router();
 
@@ -29,11 +29,9 @@ router
 });
 
 router
-.route
-  post(`/:id/characters`,
-    requireBody(["skillId", "characterId"]),
+.route(`/:id`)
+  .post( requireBody(["skillId", "characterId"]),
     async (request, response) => {
-      const { id } = request.params;
       const { skillId, characterId} = request.body;
       const skillRecord = await linkSkillsToCharacters(skillId, characterId);
       response.send(skillRecord)
