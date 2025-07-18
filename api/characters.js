@@ -5,6 +5,7 @@ export default router;
 import requireUser from "../middleware/requireUser.js";
 import { getAllCharactersByUserId, getCharacterByCharacterId, createCharacter, updateCharacter} from "#db/queries/characters";
 import requireBody from "#middleware/requireBody";
+import skillsRouter from "./character_skills.js";
 
 router.use(requireUser);
 
@@ -35,3 +36,5 @@ router.put("/", requireBody(["name","clas","attack","health","description","user
   if(!character) res.status(400).send("One or more fields invalid!");
   res.status(200).send(character);
 })
+
+router.use("/skills", skillsRouter);
