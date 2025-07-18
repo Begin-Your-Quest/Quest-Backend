@@ -46,5 +46,5 @@ export const removeCharacter = async (id) => {
     RETURNING *;
   `;
   const {rows: [character] } = await db.query(sql, [id]);
-  return character
+  return character;
 }
