@@ -3,7 +3,7 @@ const sessionsRouter = express.Router();
 export default sessionsRouter;
 
 import requireUser from '#middleware/requireUser';
-import { getSessionsByUserId, getSessionById, createSession, updateSessionById } from '#db/queries/sessions';
+import { getSessionsByUserId, getSessionById, createSession, updateSessionById, removeCharacter } from '#db/queries/sessions';
 import requireBody from '#middleware/requireBody';
 import { getCharactersBySessionId, linkSessionsToCharacters } from '#db/queries/sessions_characters';
 
@@ -37,6 +37,15 @@ sessionsRouter.post(`/:id/characters`,
     const { sessionId, characterId} = request.body;
     const sessionRecord = await linkSessionsToCharacters(sessionId, characterId);
     response.send(sessionRecord)
+  }
+);
+
+sessionsRouter.delete(`/:id/characters`,
+  requireBody(["characterId"]),
+  async (request, response) => {
+    const { characterId } = request.body;
+    const removedCharacter = await removeCharacter(characterId);
+    response.send(removedCharacter);
   }
 )
 
