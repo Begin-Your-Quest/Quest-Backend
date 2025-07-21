@@ -38,3 +38,13 @@ export const updateSessionById = async (id, name, date) => {
   const { rows: [session] } = await db.query(sql,[id, name, date]);
   return session;
 }
+
+export const removeCharacter = async (id) => {
+  const sql = `
+    DELETE FROM sessions_characters 
+    WHERE character_id = $1
+    RETURNING *;
+  `;
+  const {rows: [character] } = await db.query(sql, [id]);
+  return character;
+}

@@ -10,7 +10,6 @@ import morgan from "morgan";
 import sessionsRouter from "#api/sessions";
 import charactersRouter from "#api/characters";
 import skillsRouter from "#api/skills";
-import discordRouter from "#api/discord";
 
 app.use(cors({ origin: process.env.CORS_ORIGIN ?? /localhost/ }));
 
@@ -27,7 +26,6 @@ app.use("/users", usersRouter);
 app.use(`/sessions`, sessionsRouter)
 app.use("/characters", charactersRouter);
 app.use("/skills", skillsRouter);
-app.use("/discord", discordRouter);
 
 app.use(handlePostgresErrors);
 app.use((err, req, res, next) => {
