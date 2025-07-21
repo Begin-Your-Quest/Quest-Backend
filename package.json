@@ -8,7 +8,7 @@
     "start": "node server.js",
     "dev": "node --watch --env-file=.env server.js",
     "test": "vitest",
-    "db:schema": "psql -d quest -f db/schema.sql",
+    "db:schema": "PGPASSWORD=qeIYtZLJwX1pbP1svkqTpCqOycEDKc2a psql -h dpg-d1v5chs9c44c73dig72g-a.oregon-postgres.render.com -U quest_9kxt_user quest_9kxt -f db/schema.sql",
     "db:seed": "node db/seed.js",
     "db:reset": "npm run db:schema && npm run db:seed"
   },
