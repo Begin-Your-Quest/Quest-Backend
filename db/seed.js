@@ -10,7 +10,7 @@ await db.end();
 
 console.log('creating sessions...')
 async function seed() {
-  const userOne = await createUser("username5", "password");
+  const userOne = await createUser("username", "password");
   for (let i = 1; i <= 5; i++) {
     const session = await createSession(
       userOne.id, 
@@ -19,7 +19,7 @@ async function seed() {
       const character = await createCharacter(`char${i}`,"mage",7,4,"Strong strong strong",userOne.id);
   }
 
-  const userTwo = await createUser("username6", "password1");
+  const userTwo = await createUser("username1", "password1");
   for (let i = 6; i <= 10; i++) {
     const session = await createSession(
       userTwo.id, 
